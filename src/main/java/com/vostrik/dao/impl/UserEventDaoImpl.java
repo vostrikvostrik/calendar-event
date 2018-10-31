@@ -5,6 +5,7 @@ import com.googlecode.objectify.Objectify;
 import com.vostrik.dao.OfyService;
 import com.vostrik.dao.UserEventDao;
 import com.vostrik.model.UserEvent;
+import com.vostrik.util.DateUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -43,12 +45,14 @@ public class UserEventDaoImpl implements UserEventDao {
     @Override
     public List<UserEvent> findAll(Date date) {
         Objectify ofy = OfyService.ofy();
-        logger.debug("date to findAll " + date.toString());
+        LocalDate searchDate = DateUtil.getDatePart(date);
+        logger.debug("date to findAll " + date.toString() + "\t year " + searchDate.getYear()
+        +"\t month " + searchDate.getMonthValue()  + "\t day " + searchDate.getDayOfMonth());
         List<UserEvent> result = ofy.load().type(UserEvent.class)
                 //.order("hour desc")
-                .filter("year =", date.getYear() + 1900)
-                .filter("month =", date.getMonth())
-                .filter("day =", date.getDay())
+                .filter("year = ", searchDate.getYear())
+                .filter("month = ", searchDate.getMonthValue())
+                .filter("day = ", searchDate.getDayOfMonth())
                 .list();
         logger.debug("result Size: " + result.size());
 
@@ -58,9 +62,10 @@ public class UserEventDaoImpl implements UserEventDao {
     @Override
     public void save(UserEvent event) {
         Objectify ofy = OfyService.ofy();
-        event.setDay(event.getStart().getDay());
-        event.setMonth(event.getStart().getMonth());
-        event.setYear(event.getStart().getYear() + 1900);
+        LocalDate datePart = DateUtil.getDatePart(event.getStart());
+        event.setDay(datePart.getDayOfMonth());
+        event.setMonth(datePart.getMonthValue());
+        event.setYear(datePart.getYear());
         event.setHour(event.getHour());
         event.setMinute(event.getMinute());
         ofy.save().entity(event).now();
