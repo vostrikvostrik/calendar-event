@@ -33,9 +33,9 @@ import com.vostrik.validator.UserFormValidator;
 //https://en.wikipedia.org/wiki/Post/Redirect/Get
 //http://www.oschina.net/translate/spring-mvc-flash-attribute-example
 @Controller
-public class UserController {
+public class EventsController {
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     @Autowired
     UserFormValidator userFormValidator;
@@ -55,11 +55,11 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         logger.debug("index()");
-        return "redirect:/users";
+        return "redirect:/events";
     }
 
     // list page
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
     public String showAllUsers(HttpSession session, Model model) {
         logger.debug("showAllUsers()");
         SessionUser user = (SessionUser) session.getAttribute("user");

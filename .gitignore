@@ -11,3 +11,4 @@ target*
 /captures
 /target
 .externalNativeBuild
+application.yml
