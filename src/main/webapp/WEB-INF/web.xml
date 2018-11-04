@@ -4,14 +4,13 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 
-	<display-name>Spring3 MVC Application</display-name>
+	<display-name>Events calendar</display-name>
 
 	<!-- Auto scan REST service -->
 	<context-param>
 		<param-name>resteasy.resources</param-name>
 		<param-value>com.vostrik.web.rest.UserEventService</param-value>
 	</context-param>
-
 
 	<servlet>
 		<servlet-name>spring-web</servlet-name>
@@ -42,13 +41,13 @@
 		<filter-name>ObjectifyFilter</filter-name>
 		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
 	</filter>
-	<filter-mapping>
+
+    <filter-mapping>
 		<filter-name>ObjectifyFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-
 
 </web-app>

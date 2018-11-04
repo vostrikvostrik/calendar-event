@@ -1,5 +1,6 @@
 package com.vostrik.config;
 
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +11,24 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+
+/**
+ * Объявляем конфигурационный класс (с помощью аннотации @Configuration).
+ * С помощью аннотации @ComponentScan указываем фреймворку Spring, что компоненты надо искать внутри перечисленных пакетов
+ * Импортируем класс с настройками безопасности, собственно сам конфигуратор Spring Security
+ * (с помощью аннотации @Import({ AppSecurityConfig.class })).
+ * Эта строчка специально закомментирована в коде. Хотелось показать,
+ * что класс с настройками безопасности(AppSecurityConfig.java) отмеченный
+ * (как вы увидите ниже) аннотацией @Configuration будет автоматически найден
+ * и подключен базовым контекстом апликации Spring фреймворка, потому что путь к пакету содерфащему
+ * класс AppSecurityConfig указан в аннотации @ComponentScan.
+ * Благодаря этому Spring найдет и подключит конфигурационный класс автоматически.
+ */
 @EnableWebMvc
-@Configuration
-@ComponentScan({ "com.vostrik.web", "com.vostrik.service", "com.vostrik.dao",
+@Configuration // Объявляем конфигурационный класс
+@ComponentScan({ "com.vostrik.config.security", "com.vostrik.web", "com.vostrik.service", "com.vostrik.dao",
 		"com.vostrik.exception", "com.vostrik.validator"})
+//@Import({ AppSecurityConfig.class })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -21,6 +36,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
+	/**
+	 * Указываем что вьюшки будут лежать в директории /WEB-INF/views/
+	 * @return
+	 */
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

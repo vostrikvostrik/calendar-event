@@ -7,14 +7,12 @@ import com.vostrik.model.UserEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 @Slf4j
 public class UserEventDaoImplTest extends AbstractServiceTest {

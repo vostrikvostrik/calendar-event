@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <head>
-    <title>Spring MVC Form Handling Example</title>
+    <title>Events Calendar</title>
 
     <spring:url value="/resources/core/js/jquery/jquery-1.10.2.js" var="jquery"/>
     <spring:url value="/resources/core/js/jquery/jquery-ui.custom.min.js" var="jqueryui"/>
@@ -38,30 +38,23 @@
 </head>
 
 <spring:url value="/" var="urlHome"/>
-<spring:url value="/users/add" var="urlAddUser"/>
 
 <nav class="navbar navbar-inverse ">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${urlHome}">Spring MVC Form</a>
+            <a class="navbar-brand" href="${urlHome}">Events calendar</a>
         </div>
         <div id="navbar">
-            <ul class="nav navbar-nav navbar-right">
-                <div id="signInBut">
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                </div>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <label id="user-name" class="navbar-nav  nav-link"></label>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <div id="signOutBut">
-
-                    <div>
-                        <img id="profileImage" src="" width="30" height="30"/></div>
-                    <a href="#" onclick="signOut();">Sign out</a>
-                </div>
-            </ul>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <h2>Welcome : ${pageContext.request.userPrincipal.name}</h2>
+                <%--@elvariable id="_csrf" type="org.springframework.web.bind.MissingServletRequestParameterException"--%>
+                <c:url var="logoutUrl" value="/logout" />
+                <form action="${logoutUrl}" id="logout" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}"
+                           value="${_csrf.token}" />
+                    <input type="submit" name="submit" value="Log Out">
+                </form>
+            </c:if>
         </div>
     </div>
 
