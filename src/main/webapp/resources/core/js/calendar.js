@@ -56,8 +56,15 @@ function formatDate(date) {
     var dd = date.getDate();
     if (dd < 10) dd = '0' + dd;
 
-    var mm = date.getMonth();
+
+    for(var x in date.getAllKeys()){
+        console.log("key " + x.value);
+    }
+
+    var mm = date.getUTCMonth();
+    console.log("1. format date " + mm);
     if (mm < 10) mm = '0' + mm;
+    console.log("2. format date " + mm);
 
     var yyyy = date.getFullYear();
     if (yyyy < 1000) yyyy = '0' + yyyy;

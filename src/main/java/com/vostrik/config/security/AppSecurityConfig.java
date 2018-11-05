@@ -29,13 +29,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/user_events").access("hasRole('ROLE_ADMIN')")
-                //.antMatchers("/user_events").access("hasRole('ROLE_SUPERADMIN')")
                 .and().formLogin()//.loginPage("/login")
                 .defaultSuccessUrl("/user_events", false)
-                //.failureUrl("/login?login_error=true")
                 .and().logout().permitAll()
-               // .logoutSuccessUrl("/user_events") //or whatever page you want
-               // .logoutUrl("/logout") //thinking this is what you need
+                .logoutSuccessUrl("/index") //or whatever page you want
+                .logoutUrl("/static/j_spring_security_logout") //thinking this is what you need
          ;
     }
 }

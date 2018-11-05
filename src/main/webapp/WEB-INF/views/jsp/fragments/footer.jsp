@@ -2,7 +2,7 @@
 <div class="container">
 	<hr>
 	<footer>
-		<p>&copy; vostrik.com 2018</p>
+		<p>&copy;</p>
 	</footer>
 </div>
 

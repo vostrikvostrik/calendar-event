@@ -45,15 +45,20 @@
             <a class="navbar-brand" href="${urlHome}">Events calendar</a>
         </div>
         <div id="navbar">
+
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <h2>Welcome : ${pageContext.request.userPrincipal.name}</h2>
-                <%--@elvariable id="_csrf" type="org.springframework.web.bind.MissingServletRequestParameterException"--%>
-                <c:url var="logoutUrl" value="/logout" />
-                <form action="${logoutUrl}" id="logout" method="post">
-                    <input type="hidden" name="${_csrf.parameterName}"
-                           value="${_csrf.token}" />
-                    <input type="submit" name="submit" value="Log Out">
-                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <c:url var="logoutUrl" value="/logout"/>
+                    <form action="${logoutUrl}" id="logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}"/>
+                        <input class="btn btn-primary" type="submit" name="submit" value="Log Out">
+                    </form>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <label class="navbar-nav  nav-link">Welcome : ${pageContext.request.userPrincipal.name}</label>
+                        <%--@elvariable id="_csrf" type="org.springframework.web.bind.MissingServletRequestParameterException"--%>
+                </ul>
             </c:if>
         </div>
     </div>
