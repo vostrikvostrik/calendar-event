@@ -10,7 +10,7 @@
                         sideBySide: true
                     }).on('dp.change', function (e) {
 
-                        eventsOfDay(new Date(e.date.format('YYYY'), e.date.format('MM') - 1, e.date.format('DD')));
+                        eventsOfDay(new Date(e.date.format('YYYY'), e.date.format('MM'), e.date.format('DD')));
                         var startDate = document.getElementById("eventStartDate");
                         startDate.value = e.date.format('YYYY-MM-DD');
                         var eventHourMinute = document.getElementById("eventHourMinute");

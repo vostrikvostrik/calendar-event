@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.Date;
 
 import static javax.ws.rs.core.Response.Status.OK;
@@ -41,11 +42,11 @@ public class AjaxHelperController {
 
     @RequestMapping(value = "/events/add", method = RequestMethod.POST)
     public @ResponseBody
-    Response addNewEvent(@RequestBody UserEvent userEvent) {
-        logger.debug("add new event: " + userEvent.toString());
-        userEventDao.save(userEvent);
+    Response addNewEvent(@RequestBody UserEvent event) {
+        logger.debug("add new event: " + event.toString());
+        userEventDao.save(event);
         Gson gson = new Gson();
-        return Response.status(OK).entity(gson.toJson(userEvent)).build();
+        return Response.status(OK).entity(gson.toJson(event)).build();
     }
 
 

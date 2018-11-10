@@ -27,6 +27,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http
+                .csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/user_events").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin()//.loginPage("/login")

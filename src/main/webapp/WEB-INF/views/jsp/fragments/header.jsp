@@ -11,7 +11,6 @@
     <spring:url value="/resources/core/js/moment.js" var="moment"/>
     <spring:url value="/resources/core/js/bootstrap-datetimepicker.js" var="bootstrapDate"/>
 
-    <spring:url value="/resources/core/js/oauth.js" var="oauthJs"/>
     <spring:url value="/resources/core/js/date.format.js" var="dateformat"/>
     <spring:url value="/resources/core/js/calendar.js" var="calendar"/>
 
@@ -20,7 +19,6 @@
     <script src="${bootstrap}"></script>
     <script src="${moment}"></script>
     <script src="${bootstrapDate}"></script>
-    <script src="${oauthJs}"></script>
     <script src="${dateformat}"></script>
     <script src="${calendar}"></script>
 

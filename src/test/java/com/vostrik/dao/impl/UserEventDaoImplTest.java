@@ -1,9 +1,8 @@
 package com.vostrik.dao.impl;
 
-import com.googlecode.objectify.Objectify;
-import com.vostrik.dao.OfyService;
 import com.vostrik.dao.UserEventDao;
 import com.vostrik.model.UserEvent;
+import com.vostrik.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,45 +21,48 @@ public class UserEventDaoImplTest extends AbstractServiceTest {
 
     UserEvent event;
 
-    @Override
     @Before
     public void setUp() throws Exception {
-        super.setUp();
         initEvents();
     }
 
     private void initEvents(){
-        Objectify ofy = OfyService.ofy();
         UserEvent event = new UserEvent();
         event.setDay(10);
+        event.setAllDay(true);
         event.setMonth(12);
         event.setYear(2018);
         event.setHour(17);
         event.setMinute(46);
+
         event.setStart(new Date(2018 - 1900, 12 - 1, 10));
         event.setTitle("first event");
-        ofy.save().entity(event).now();
+        event.setClassName("routine");
+        userEventDao.save(event);
 
         event = new UserEvent();
         event.setDay(11);
+        event.setAllDay(false);
         event.setMonth(12);
         event.setYear(2018);
         event.setHour(13);
         event.setMinute(0);
         event.setStart(new Date(2018 - 1900, 12 - 1, 11));
         event.setTitle("second event");
-        ofy.save().entity(event).now();
+        event.setClassName("party");
+        userEventDao.save(event);
 
         event = new UserEvent();
         event.setDay(11);
+        event.setAllDay(false);
         event.setMonth(12);
         event.setYear(2018);
         event.setHour(15);
         event.setMinute(0);
         event.setStart(new Date(2018 - 1900, 12 - 1, 11));
         event.setTitle("third event");
-        ofy.save().entity(event).now();
-
+        event.setClassName("routine");
+        userEventDao.save(event);
 
     }
 
@@ -69,7 +71,6 @@ public class UserEventDaoImplTest extends AbstractServiceTest {
         List<UserEvent> result = userEventDao.findAll();
         Assert.notEmpty(result,"result must be not empty");
     }
-
 
     @Test
     public void save() {
@@ -88,15 +89,4 @@ public class UserEventDaoImplTest extends AbstractServiceTest {
         Assert.notEmpty(result,"results by date must be not empty");
     }
 
-    @Test
-    public void findById() {
-    }
-
-    @Test
-    public void update() {
-    }
-
-    @Test
-    public void delete() {
-    }
 }

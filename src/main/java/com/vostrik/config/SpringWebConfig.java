@@ -1,6 +1,5 @@
 package com.vostrik.config;
 
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +25,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @EnableWebMvc
 @Configuration // Объявляем конфигурационный класс
-@ComponentScan({ "com.vostrik.config.security", "com.vostrik.web", "com.vostrik.service", "com.vostrik.dao",
+@ComponentScan({ "com.vostrik.config.security", "com.vostrik.config.db", "com.vostrik.web", "com.vostrik.dao",
 		"com.vostrik.exception", "com.vostrik.validator"})
 //@Import({ AppSecurityConfig.class })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
