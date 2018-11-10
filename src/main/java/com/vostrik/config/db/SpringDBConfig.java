@@ -29,6 +29,7 @@ public class SpringDBConfig {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder.setName("testdb").setType(EmbeddedDatabaseType.HSQL)
                 .addScript("db/sql/create-db.sql").build();
+
         log.debug("after config data source");
         return db;
     }

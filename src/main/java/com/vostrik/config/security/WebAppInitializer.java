@@ -1,8 +1,10 @@
 package com.vostrik.config.security;
 
 import com.vostrik.config.SpringWebConfig;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@Configuration
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

@@ -1,5 +1,6 @@
 package com.vostrik.config.security;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 
@@ -19,5 +20,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  *  <dispatcher>REQUEST</dispatcher>
  * </filter-mapping>
  */
-public class SecurityInit extends AbstractSecurityWebApplicationInitializer {
+//@Configuration
+public class SecurityInit // extends AbstractSecurityWebApplicationInitializer
+{
 }
