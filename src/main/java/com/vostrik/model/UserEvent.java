@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class UserEvent implements Serializable {
    private Long id;
    private String title;
    @JsonFormat(pattern = "yyyy-MM-dd")
+   @DateTimeFormat(pattern = "yyyy-MM-dd")
    private Date start;
    private Boolean allDay;
    private String className;
