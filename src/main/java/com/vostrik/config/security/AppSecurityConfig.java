@@ -31,6 +31,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/user_events").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/rest/**").access("hasRole('ROLE_SUPERADMIN')")
                 .and().formLogin()//.loginPage("/login")
                 .defaultSuccessUrl("/user_events", false)
                 .and().logout().permitAll()
